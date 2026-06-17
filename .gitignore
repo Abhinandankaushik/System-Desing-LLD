@@ -1,0 +1,15 @@
+# Ignore C/C++ object files
+*.o
+*.obj
+
+# Ignore build artifacts
+*.exe
+*.out
+*.ilk
+*.pdb
+
+# Ignore temporary editor files
+*~
+*.swp
+*.tmp
+*.vscode
