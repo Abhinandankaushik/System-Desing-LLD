@@ -20,10 +20,10 @@ public:
         if (instance == nullptr)
         {
             lock_guard<mutex> lock(mtx); // lock for thread safety
-            if (instance == nullptr) {
-                return instance;
+            if (instance == nullptr)
+            {
+                instance = new Singleton();
             }
-            instance = new Singleton();
         }
         return instance;
     }
