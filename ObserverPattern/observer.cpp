@@ -23,7 +23,6 @@ public:
     virtual ~ISubscriber() = default;
 };
 
-
 class Channel : public IChannel
 {
     string name;
@@ -45,7 +44,6 @@ public:
         }
         cout << subscriber->getName() << " Subscribed :" << this->name << endl;
         this->subscriber.insert(subscriber);
-        
     }
 
     void unSubscribe(ISubscriber *subscriber) override
@@ -58,9 +56,8 @@ public:
     {
         return this->videoLink;
     }
-   
 
-     void notify() override
+    void notify() override
     {
         for (auto s : subscriber)
         {
@@ -74,10 +71,7 @@ public:
         cout << "Added new video Link :" << this->videoLink << endl;
         notify();
     }
-
-   
 };
-
 
 class Subscriber : public ISubscriber
 {
@@ -85,7 +79,7 @@ class Subscriber : public ISubscriber
     Channel *channel;
 
 public:
-    Subscriber(const string &name , Channel* channel)
+    Subscriber(const string &name, Channel *channel)
     {
         this->name = name;
         this->channel = channel;
@@ -105,25 +99,19 @@ public:
     }
 };
 
+int main()
+{
+    Channel *channelA = new Channel("YTgaming");
 
+    Subscriber *subA = new Subscriber("John Doe", channelA);
+    Subscriber *subB = new Subscriber("Joy", channelA);
 
-
-
-int main (){
-
-    Channel* channelA = new Channel("YTgaming");
-
-    Subscriber* subA = new Subscriber("John Doe",channelA);
-    Subscriber* subB = new Subscriber("Joy",channelA);
-
-    channelA->subscribe(subA) ;  
+    channelA->subscribe(subA);
     channelA->subscribe(subB);
 
     channelA->uploadVideo("https://newvide.mp4");
 
     channelA->unSubscribe(subA);
 
-    
     return 0;
-    
 }
